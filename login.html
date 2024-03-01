@@ -1,0 +1,70 @@
+{% extends "layouts2.html" %}
+{% block content %} 
+
+<!-- Pills navs -->
+<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="{{url_for('login')}}" role="tab"
+        aria-controls="pills-login" aria-selected="true">Login</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="{{url_for('register')}}" role="tab"
+        aria-controls="pills-register" aria-selected="false">Register</a>
+    </li>
+</ul>
+  <!-- Pills navs -->
+  
+  
+<form action="{{ url_for('login') }}" method="POST">
+      {{ form.hidden_tag()}}
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            {{ form.email.label(class='form-control-label')}}
+            {% if form.email.errors%}
+            {{ form.email(class='form-control form-control-lg is-invalid')}}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class='form-control form-control-lg')}}
+            {% endif %}
+        </div>
+  
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            {{ form.password.label(class='form-control-label')}}
+            {% if form.password.errors%}
+            {{ form.password(class='form-control form-control-lg is-invalid')}}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.password(class='form-control form-control-lg')}}
+            {% endif %}
+
+        </div>
+        <div class="btn btn-primary btn-block mb-4">
+            {{ form.submit(class='btn btn-outline-info')}}
+        </div>
+        <!-- 2 column grid layout -->
+        <div class="row mb-4">
+          <div class="col-md-6 d-flex justify-content-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-3 mb-md-0">
+              {{form.remember(class='form-check-input')}}
+              {{form.remember.label(class='form-check-input-label',for="loginCheck")}}
+              
+            </div>
+          </div>
+        </div>
+</form>
+        
+  
+  
+    
+    
+{% endblock content %}

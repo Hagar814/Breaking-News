@@ -1,0 +1,92 @@
+{% extends "layouts2.html" %}
+{% block content %}
+    <!-- Flash Messages -->
+    <!-- Section: Design Block -->
+    <section class="">
+        <!-- Jumbotron -->
+        <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 100%)">
+            <div class="container">
+                <div class="row gx-lg-5 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h1 class="my-5 display-3 fw-bold ls-tight">
+            
+                            <span class="text-primary">NEWS</span>
+                        </h1>
+                        <p style="color: hsl(217, 10%, 70%)">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                            quibusdam tempora at cupiditate quis eum maiores libero
+                            veritatis? Dicta facilis sint aliquid ipsum atque?
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card">
+                            <div class="card-body py-5 px-md-5">
+                                <form action="{{ url_for('register') }}" method="POST">
+                                    {{ form.hidden_tag()}}
+                                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-group">
+                                                {{ form.username.label(class='form-control-label')}}
+                                                {% if form.username.errors%}
+                                                    {{ form.username(class='form-control form-control-lg is-invalid')}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.username.errors %}
+                                                            <span>{{error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    {{ form.username(class='form-control form-control-lg')}}
+                                                {% endif %}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.email.label(class='form-control-label')}}
+                                                {% if form.email.errors%}
+                                                    {{ form.email(class='form-control form-control-lg is-invalid')}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.email.errors %}
+                                                            <span>{{error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    {{ form.email(class='form-control form-control-lg')}}
+                                                {% endif %}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.password.label(class='form-control-label')}}
+                                                {% if form.password.errors%}
+                                                    {{ form.password(class='form-control form-control-lg is-invalid')}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.password.errors %}
+                                                            <span>{{error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    {{ form.password(class='form-control form-control-lg')}}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Submit button -->
+                                    <div class="form-group">
+                                        {{ form.submit(class="btn btn-primary btn-block mb-4")}}
+                                    </div>
+                                </form>
+                                <div class="border-top pt-3">
+                                    <small class="text-muted">
+                                        Already have an Account?
+                                        <a href="{{url_for('login')}}" class="ml-2">Sign in</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
+    <!-- Section: Design Block -->
+{% endblock content %}
